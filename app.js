@@ -1,17 +1,17 @@
 let currentOperation = null;
 let firstOperand = null;
 let secondOperand = null;
-let setSecondOutput = 0;
+let setNewOutput = 0;
 
 let outputDiv = document.getElementById('output');
   
 function showValue(value) {
-    if (currentOperation !== null && setSecondOutput == 0) {
-        setSecondOutput = 1;
+    if (currentOperation !== null && setNewOutput == 0) {
+        setNewOutput = 1;
         outputDiv.textContent = '';
         outputDiv.textContent += value;
         secondOperand = parseFloat(outputDiv.textContent);
-    } else if (setSecondOutput == 1) {
+    } else if (setNewOutput == 1) {
         outputDiv.textContent += value;
         secondOperand = parseFloat(outputDiv.textContent);
     } else {
@@ -21,10 +21,17 @@ function showValue(value) {
 }
   
 function setOperation(operation) {      
-    currentOperation = operation;
+    if(setNewOutput == 0){
+        currentOperation = operation
+    } else {
+        operate()
+        currentOperation = operation;
+        secondOperand = null;
+        setNewOutput = 0;
+    }
 }
-  
-function calculate() {
+
+function operate(){
     if (currentOperation === '+') {
         outputDiv.textContent = sum(firstOperand, secondOperand);
     } else if (currentOperation === '-') {
@@ -36,10 +43,13 @@ function calculate() {
     } else if (currentOperation === null) {
         return
     }
+}
 
+function calculate() {
+    operate()
     currentOperation = null;
     secondOperand = null;
-    setSecondOutput = 0;
+    setNewOutput = 0;
 }
 
 function clearOutput() {
@@ -72,3 +82,18 @@ function divide(a, b) {
         return a / b;
     }
 }
+
+/*
+operand1 != null
+operator != null
+operand2 != null
+setNewOutput = 1
+
+press operator
+    setOperation()
+    checks setNewOutput to see if a second variable has been inputted already
+        if no => currentOperation = operation(v)
+        if yes
+            run operate() based on current settings
+
+*/
