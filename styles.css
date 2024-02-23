@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid red;
+    margin: 10%;
+}
+
+.screen{
+    height: 30px;
+    margin: 10px;
+    border: 1px solid green;
+    justify-content: flex-end;
+    font-size: 30px;
+}
+
+.button-tray{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.digits{
+    margin: 10px;
+    border: 1px solid blue;
+    flex-wrap: wrap;
+    max-width: 175px;
+    align-items: center;
+}
+
+.functions{
+    margin: 5px;
+    border: solid 1px blue;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-tray button{
+    font-size: 30px;
+    margin: 10px;
+}
