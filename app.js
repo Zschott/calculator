@@ -14,12 +14,17 @@ function showValue(value) {
     } else if (setNewOutput == 1) {
         outputDiv.textContent += value;
         secondOperand = parseFloat(outputDiv.textContent);
+    }else if(currentOperation == null && setNewOutput == 2){
+        setNewOutput = 0;
+        outputDiv.textContent = '';
+        outputDiv.textContent += value;
+        firstOperand = parseFloat(outputDiv.textContent);
     } else {
         outputDiv.textContent += value;
         firstOperand = parseFloat(outputDiv.textContent);
     }
 }
-  
+
 function setOperation(operation) {      
     if(setNewOutput == 0){
         currentOperation = operation
@@ -40,7 +45,7 @@ function operate(){
         outputDiv.textContent = multiply(firstOperand, secondOperand);
     } else if (currentOperation === '/') {
         outputDiv.textContent = divide(firstOperand, secondOperand);
-    } else if (currentOperation === null) {
+    } else if (currentOperation === null || secondOperand === null) {
         return
     }
 }
@@ -49,13 +54,14 @@ function calculate() {
     operate()
     currentOperation = null;
     secondOperand = null;
-    setNewOutput = 0;
+    setNewOutput = 2;
 }
 
 function clearOutput() {
     outputDiv.textContent = '';
     currentOperation = null;
     firstOperand = null;
+    setNewOutput = 0;
 }
 
 function sum(a, b) {
