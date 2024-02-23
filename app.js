@@ -6,7 +6,9 @@ let setNewOutput = 0;
 let outputDiv = document.getElementById('output');
   
 function showValue(value) {
-    if (currentOperation !== null && setNewOutput == 0) {
+    if (value === '.' && outputDiv.textContent.includes('.')){
+        return
+    } else if (currentOperation !== null && setNewOutput == 0) {
         setNewOutput = 1;
         outputDiv.textContent = '';
         outputDiv.textContent += value;
@@ -47,6 +49,14 @@ function operate(){
         outputDiv.textContent = divide(firstOperand, secondOperand);
     } else if (currentOperation === null || secondOperand === null) {
         return
+    }
+    
+    let result = parseFloat(outputDiv.textContent);
+    let decimalPart = (result.toString().split('.')[1] || '').length;
+    if (decimalPart >= 7) {
+        outputDiv.textContent = result.toFixed(7);
+    } else {
+        outputDiv.textContent = result;
     }
 }
 
