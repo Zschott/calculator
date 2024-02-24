@@ -4,41 +4,58 @@ let secondOperand = null;
 let setNewOutput = 0;
 
 let outputDiv = document.getElementById('output');
+
+const addButton = document.getElementById('add');
+const subtractButton = document.getElementById('subtract');
+const divideButton = document.getElementById('divide');
+const multiplyButton = document.getElementById('multiply')
+const operatorButtons = document.getElementsByClassName('opButton');
   
 function showValue(value) {
     if (value === '.' && outputDiv.textContent.includes('.')){
         return
-    } else if (currentOperation !== null && setNewOutput == 0) {
+    } else if (currentOperation !== null && setNewOutput == 0) { // starts input for second variable
         setNewOutput = 1;
         outputDiv.textContent = '';
         outputDiv.textContent += value;
-        secondOperand = parseFloat(outputDiv.textContent);
+        secondOperand = parseFloat(outputDiv.textContent); // continues input for second variable
     } else if (setNewOutput == 1) {
         outputDiv.textContent += value;
         secondOperand = parseFloat(outputDiv.textContent);
-    }else if(currentOperation == null && setNewOutput == 2){
+    } else if (currentOperation == null && setNewOutput == 2){ // starts input for first variable after a calculation has already been started
         setNewOutput = 0;
         outputDiv.textContent = '';
         outputDiv.textContent += value;
         firstOperand = parseFloat(outputDiv.textContent);
-    } else {
+    } else { // starts input for first variable, or contines input for first varaible after a calculation has already been started
         outputDiv.textContent += value;
         firstOperand = parseFloat(outputDiv.textContent);
     }
 }
 
 function setOperation(operation) {      
+    if(firstOperand === null){
+        return
+    } 
+
+    if (currentOperation !== null){
+        removeOperatorHighlight()
+    }
+
     if(setNewOutput == 0){
         currentOperation = operation
+        highlightOperator()
     } else {
         operate()
         currentOperation = operation;
+        highlightOperator();
         secondOperand = null;
         setNewOutput = 0;
     }
 }
 
 function operate(){
+    removeOperatorHighlight()
     if (currentOperation === '+') {
         outputDiv.textContent = sum(firstOperand, secondOperand);
     } else if (currentOperation === '-') {
@@ -69,9 +86,32 @@ function calculate() {
 
 function clearOutput() {
     outputDiv.textContent = '';
+    removeOperatorHighlight()
     currentOperation = null;
     firstOperand = null;
     setNewOutput = 0;
+}
+
+function clearButton(button){
+    button.setAttribute('style', 'color: null; background: null;')
+}
+
+function collorButton(button){
+    button.setAttribute('style', 'color: blue; background: white;');
+}
+
+function highlightOperator(){
+    return currentOperation == '+' ?  collorButton(addButton):
+        currentOperation == '-' ? collorButton(subtractButton):
+        currentOperation == '/' ? collorButton(divideButton):
+        collorButton (multiplyButton);
+}
+
+function removeOperatorHighlight(){
+    return currentOperation == '+' ?  clearButton(addButton):
+    currentOperation == '-' ? clearButton(subtractButton):
+    currentOperation == '/' ? clearButton(divideButton):
+    clearButton (multiplyButton);
 }
 
 function sum(a, b) {
@@ -98,18 +138,3 @@ function divide(a, b) {
         return a / b;
     }
 }
-
-/*
-operand1 != null
-operator != null
-operand2 != null
-setNewOutput = 1
-
-press operator
-    setOperation()
-    checks setNewOutput to see if a second variable has been inputted already
-        if no => currentOperation = operation(v)
-        if yes
-            run operate() based on current settings
-
-*/
