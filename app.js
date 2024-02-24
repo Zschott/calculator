@@ -97,7 +97,7 @@ function clearButton(button){
 }
 
 function collorButton(button){
-    button.setAttribute('style', 'color: blue; background: white;');
+    button.setAttribute('style', 'color: white; background: black;');
 }
 
 function highlightOperator(){
