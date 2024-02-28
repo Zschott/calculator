@@ -131,7 +131,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        alert("Error. You can't divide by zero, smartass. Just pretend you pressed the A/C button.");
+        alert("Error. You can't divide by zero, smarty pants. Would you kindly do us both a favor and press the A/C button when you're finished up here.");
         clearOutput();
     } else {
         firstOperand = a / b;
