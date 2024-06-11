@@ -1,23 +1,49 @@
 body {
     display: flex;
     justify-content: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,119,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 .calculator{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid red;
+    border: 1px solid black;
+    border-radius: 8px;
     margin: 10%;
+    background: rgb(34,193,195);
+background: linear-gradient(222deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
 }
 
 .screen{
     height: 30px;
     padding: 5px;
     margin: 10px;
-    border: 1px solid green;
     justify-content: flex-end;
     font-size: 30px;
+    background-color: black;
+    color: white;
+    border: solid 2px white;
+    border-radius: 8px;
+}
+
+button{
+    border-radius: 10px;
+    border: solid white 2px;
+    background-color: black;
+    color: whitesmoke;
+}
+
+button:hover{
+    border: solid whitesmoke 2px;
+    background-color: #352de8;
+    border-radius: 8px;
+}
+
+button:active{
+    border: solid #fcb045 2px;
+    background-color: #9a0303;
 }
 
 .button-tray{
@@ -29,16 +55,22 @@ body {
 .digits{
     margin: 10px;
     border: 1px solid blue;
+    border-radius: 8px;
     flex-wrap: wrap;
     max-width: 175px;
     align-items: center;
+    background: rgb(2,0,36);
+background: linear-gradient(275deg, rgba(2,0,36,1) 0%, rgba(9,121,87,1) 0%, rgba(0,212,255,1) 100%);
 }
 
 .functions{
     margin: 5px;
     border: solid 1px blue;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,87,1) 0%, rgba(0,212,255,1) 100%);
 }
 
 .button-tray button{

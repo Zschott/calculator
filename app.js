@@ -78,10 +78,15 @@ function operate(){
 }
 
 function calculate() {
+    if (currentOperation == '/' && secondOperand == 0){
+        setNewOutput = 0
+        return alert(`Error. You can't divide by zero.`)
+    } else {
     operate()
     currentOperation = null;
     secondOperand = null;
     setNewOutput = 2;
+    }
 }
 
 function clearOutput() {
@@ -97,7 +102,7 @@ function clearButton(button){
 }
 
 function collorButton(button){
-    button.setAttribute('style', 'color: white; background: black;');
+    button.setAttribute('style', 'color: white; background: #9a0303;');
 }
 
 function highlightOperator(){
@@ -131,8 +136,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        alert("Error. You can't divide by zero, smarty pants. Would you kindly do us both a favor and press the A/C button when you're finished up here.");
-        clearOutput();
+        return alert("Error. You still can't divide by zero, smarty pants. Would you kindly do us both a favor and press the A/C button when you're finished up here. Also, maybe let me know what you did before getting this alert, please and thanks.");
     } else {
         firstOperand = a / b;
         return a / b;
